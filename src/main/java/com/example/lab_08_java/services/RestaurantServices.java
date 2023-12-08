@@ -43,6 +43,7 @@ public class RestaurantServices {
 
         List<Order> ordersList = new ArrayList<>();
         restaurant.getPaydesks()
+                .stream().filter(p -> p.getAvailability() == Paydesk.Availability.AVAILABLE)
                 .forEach(p -> p.getClients().stream().findFirst().ifPresent(c -> {
                     if (!c.getOrder().isCompleted()) ordersList.add(c.getOrder());
                 }));

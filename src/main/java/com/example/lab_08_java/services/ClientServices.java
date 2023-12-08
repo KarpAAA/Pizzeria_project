@@ -44,12 +44,16 @@ public class ClientServices {
     }
 
     public List<PizzaDTO> randomOrderWithGift() {
+
         List<PizzaDTO> all = pizzaServices.getPizzaList();
         Random random = new Random();
-        int pizzaAmount = 4;
+        int pizzaAmount = random.nextInt(1, 9);
 
         List<PizzaDTO> resultList = randomOrder(all, random, pizzaAmount);
-        resultList.add(randomedGiftPizza(all));
+        int pizzaSale = pizzaAmount/4;
+        for(int i = 0; i < pizzaSale; i++){
+            resultList.add(randomedGiftPizza(all));
+        }
         return resultList;
     }
 
